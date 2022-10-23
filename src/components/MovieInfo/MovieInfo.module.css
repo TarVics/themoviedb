@@ -1,0 +1,137 @@
+.before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    background-repeat: no-repeat;
+    background-position: 50% 60px;
+    background-size: cover;
+}
+
+.MovieInfo {
+    position: relative;
+    /*overflow: clip;*/
+
+    height: 100vh;
+    min-height: 1000px;
+    /*font-size: 0.9rem;*/
+}
+
+.caption {
+    font-size: 0.875em;
+    font-weight: 700;
+}
+
+.text {
+    font-size: 0.875em;
+    font-weight: 400;
+}
+
+.overview {
+    margin: 20px 0;
+    text-align: justify;
+    text-indent: 20px;
+    overflow-y: auto;
+    font-size: 0.9em;
+}
+
+.image {
+    height: auto;
+    width: 500px;
+}
+
+.content {
+    position: relative;
+    top: 120px;
+    margin: 0 auto;
+    width: 1000px;
+    max-height: 750px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /*box-shadow: rgba(149, 157, 165, 0.9) 0 8px 24px;*/
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    overflow: hidden;
+    opacity: 1;
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+}
+
+.left {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right {
+    padding: 40px;
+    width: 500px;
+}
+
+.page {
+    padding: 0 10px;
+    max-height: 650px;
+    overflow-y: auto;
+}
+
+.paragraph {
+    margin: 15px 0;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+
+    .MovieInfo {
+        min-height: 1670px;
+        height: unset;
+        width: unset;
+    }
+
+    .right {
+        min-height: 750px;
+    }
+
+    .content {
+        width: 500px;
+        max-height: unset;
+    }
+}
+
+@media screen and (min-width: 0) and (max-width: 600px) {
+    .MovieInfo {
+        min-height: 1000px;
+    }
+
+    .left {
+        width: 300px;
+    }
+
+    .image {
+        width: 300px;
+    }
+
+    .right {
+        min-height: 450px;
+        padding: 10px;
+    }
+
+    .page {
+        padding: 0 10px;
+        max-height: 430px;
+        overflow-y: auto;
+    }
+
+    .content {
+        top: 80px;
+
+        width: 300px;
+        min-height: 900px;
+    }
+}

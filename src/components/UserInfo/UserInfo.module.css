@@ -1,0 +1,30 @@
+.UserInfo {
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ccc3be;
+}
+
+.name {
+  margin-right: 18px;
+}
+
+@media screen and (min-width: 0) and (max-width: 480px) {
+  .name {
+    display: none;
+  }
+
+  .image {
+    display: none;
+  }
+}

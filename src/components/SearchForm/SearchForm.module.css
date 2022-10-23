@@ -1,0 +1,60 @@
+.SearchForm {
+    position: fixed;
+    width: 480px;
+    padding: 15px;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top .2s ease;
+    z-index: 1;
+    display: flex;
+    column-gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.9) 0 8px 8px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+}
+
+.visible {
+    top: 60px;
+}
+
+.hidden {
+    top: -70px;
+}
+
+.SearchForm > input[type="text"] {
+    flex-grow: 1;
+}
+
+.SearchForm > input[type="submit"] {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.SearchForm > button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.SearchForm > input {
+    padding: 0 5px 2px;
+    outline: none;
+}
+
+
+@media screen and (min-width: 0) and (max-width: 480px) {
+    .SearchForm {
+        width: 320px;
+    }
+
+    .SearchForm > input[type="text"] {
+        width: 172px;
+    }
+
+}

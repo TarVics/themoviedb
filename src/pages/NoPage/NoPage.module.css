@@ -1,0 +1,21 @@
+.wrapper {
+    padding: 120px 0 60px;
+    width: var(--wrapper-width);
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .2s;
+}
+
+.content {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+}

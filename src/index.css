@@ -1,0 +1,51 @@
+:root {
+  --wrapper-width: 1280px;
+}
+
+:root[data-theme="light"] {
+  --background-color: #fafafa;
+  --foreground-color: #2b3e51;
+  --header-background-color: #3e4650;
+}
+
+:root[data-theme="dark"] {
+  --background-color: #2b3e51;
+  --foreground-color: #fafafa;
+  --header-background-color: #212529;
+}
+
+body {
+  background: var(--background-color);
+  background-color: var(--background-color);
+  transition: .2s ease;
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1279px) {
+  :root {
+    --wrapper-width: 1024px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --wrapper-width: 768px;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 768px) {
+  :root {
+    --wrapper-width: 600px;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 600px) {
+  :root {
+    --wrapper-width: 480px;
+  }
+}
+
+@media screen and (min-width: 0) and (max-width: 480px) {
+  :root {
+    --wrapper-width: 320px;
+  }
+}

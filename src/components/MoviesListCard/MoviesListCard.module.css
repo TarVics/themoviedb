@@ -1,0 +1,31 @@
+.MoviesListCard {
+    width: 300px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.MoviesListCard:hover {
+    box-shadow: rgba(149, 157, 165, 0.9) 0 8px 24px;
+    cursor: pointer;
+}
+
+.body {
+    padding: 15px;
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+}
+
+.link {
+    text-decoration: none;
+}
+
+.footer {
+    border-top: 1px solid lightgray;
+    padding-top: 10px;
+}
+
+.text {
+    margin: 15px 0;
+    font-size: 14px;
+}

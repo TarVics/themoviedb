@@ -1,0 +1,26 @@
+.warning {
+  margin: 4px 2px;
+  padding: 0 .5em .1em;
+  background-color: #c05a5a;
+  color: white;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1.5em;
+  /*height: 2em;*/
+  border-radius: 1em;
+  font-size: 12px;
+}
+
+.badger {
+  margin: 4px 2px;
+  padding: 0 .5em .1em;
+  background-color: #1a7194;
+  color: white;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1.5em;
+  /*height: 2em;*/
+  border-radius: 1em;
+  font-size: 12px;
+}
+
