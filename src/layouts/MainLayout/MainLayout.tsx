@@ -1,30 +1,25 @@
 import React, {FC, useState} from 'react';
 import {Outlet, URLSearchParamsInit, useNavigate, useParams, useSearchParams} from "react-router-dom";
 
-import {Header, ISearchFormResult, NavButton, NavPage, NavSearch, NavTheme, SearchForm} from "../../components";
 import {useAppSelector} from "../../hooks";
+import {
+    Header,
+    ISearchFormResult,
+    NavButton,
+    NavLanguage,
+    NavPage,
+    NavSearch,
+    NavTheme,
+    SearchForm
+} from "../../components";
 
 const MainLayout: FC = () => {
-    // const {language} = useThemeContext();
-    // const dispatch = useAppDispatch();
+    const {i18n} = useAppSelector(state => state.i18nReducer);
     const params = useParams();
     const navigate = useNavigate();
     const [searchVisible, setSearchVisible] = useState(false);
     const [query, setQuery] = useSearchParams({page: '1'});
     const {prev, next, loading} = useAppSelector(state => state.moviesReducer);
-
-    // useEffect(() => {
-    //     dispatch(genresActions.getGenres(language.encode));
-    // }, [dispatch, language]);
-
-    // useEffect(() => {
-    //     dispatch(moviesActions.getMovies({
-    //         page: query.get('page'),
-    //         genres: query.get('genres'),
-    //         query: query.get('query'),
-    //         language: language.encode
-    //     }));
-    // }, [query, language, dispatch]);
 
     const prevPage = () => {
         setQuery(value => {
@@ -53,6 +48,7 @@ const MainLayout: FC = () => {
     return (
         <>
             <Header>
+                <NavLanguage/>
                 <NavTheme/>
                 {!params.id &&
                     <>
@@ -69,7 +65,7 @@ const MainLayout: FC = () => {
                 {params.id &&
                     <NavButton
                         onClick={() => navigate(-1)}
-                        title={'Backward'}
+                        title={i18n.value.BACKWARD}
                         icon={'fa-chevron-left'}
                     />
                 }

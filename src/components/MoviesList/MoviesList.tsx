@@ -1,34 +1,16 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {useSearchParams} from "react-router-dom";
 
 import css from "./MovieList.module.css";
-import {useAppDispatch, useAppSelector, useThemeContext, useWindowResize} from "../../hooks";
-import {genresActions, moviesActions} from "../../redux";
+import {useAppSelector, useWindowResize} from "../../hooks";
 import {MoviesListCard} from "..";
 
 type ISizes = {count: number, values: number[]}
 
 const MoviesList = () => {
-    const {language} = useThemeContext();
-    const dispatch = useAppDispatch();
-    const [query] = useSearchParams({page: '1'});
-    const {movies} = useAppSelector(state => state.moviesReducer);
-    const [width] = useWindowResize();
     const moviesRef = useRef<HTMLDivElement>(null);
+    const {movies} = useAppSelector(state => state.moviesReducer);
     const [sizes, setSizes] = useState<ISizes>({count: 0, values: []})
-
-    useEffect(() => {
-        dispatch(genresActions.getGenres(language.encode));
-    }, [dispatch, language]);
-
-    useEffect(() => {
-        dispatch(moviesActions.getMovies({
-            page: query.get('page'),
-            genres: query.get('genres'),
-            query: query.get('query'),
-            language: language.encode
-        }));
-    }, [query, language, dispatch]);
+    const [width] = useWindowResize();
 
     useEffect(() => {
         setSizes((prev: ISizes) => {

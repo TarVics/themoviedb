@@ -3,7 +3,7 @@ import React, {FC} from 'react';
 import css from "./MovieInfo.module.css";
 import {tmDbService} from "../../services";
 import {IMovieDetails} from "../../interfaces";
-import {useWindowResize} from "../../hooks";
+import {useAppSelector, useWindowResize} from "../../hooks";
 import {GenreBadge,StarsRating,MovieInfoRow} from "..";
 
 interface IProps {
@@ -11,6 +11,7 @@ interface IProps {
 }
 
 const MovieInfo: FC<IProps> = ({movie}) => {
+    const {i18n} = useAppSelector(state => state.i18nReducer);
     const [width] = useWindowResize();
     const backgroundSrc = movie.backdrop_path || movie.belongs_to_collection?.backdrop_path;
     const foregroundSrc = movie.poster_path || movie.belongs_to_collection?.poster_path;
@@ -35,7 +36,7 @@ const MovieInfo: FC<IProps> = ({movie}) => {
                 <div className={css.right}>
                     <div className={css.page}>
                         <div className={css.paragraph}>
-                            {movie.imdb_id && <MovieInfoRow caption={'id'} text={movie.imdb_id}/>}
+                            {movie.imdb_id && <MovieInfoRow caption={i18n.value.ID} text={movie.imdb_id}/>}
                             {movie.status && <MovieInfoRow caption={movie.status} />}
                         </div>
 
@@ -53,25 +54,25 @@ const MovieInfo: FC<IProps> = ({movie}) => {
                         </div>
 
                         <div className={css.paragraph}>
-                            {movie.budget > 0 && <MovieInfoRow caption={'Budget'} text={movie.budget.toString()}/>}
+                            {movie.budget > 0 && <MovieInfoRow caption={i18n.value.BUDGET} text={movie.budget.toString()}/>}
 
                             {movie.spoken_languages &&
                                 <MovieInfoRow
-                                    caption={'Languages'}
+                                    caption={i18n.value.LANGUAGES}
                                     text={movie.spoken_languages.map(v => v.name).join(', ')}
                                 />
                             }
 
                             {movie.production_countries.length > 0 &&
                                 <MovieInfoRow
-                                    caption={'Countries'}
+                                    caption={i18n.value.COUNTRIES}
                                     text={movie.production_countries.map(v => v.name).join(', ')}
                                 />
                             }
 
                             {movie.production_companies.length > 0 &&
                                 <MovieInfoRow
-                                    caption={'Companies'}
+                                    caption={i18n.value.COMPANIES}
                                     text={
                                         movie.production_companies.map(v =>
                                             v.name + (v.origin_country ? ' (' + v.origin_country + ')' : '')

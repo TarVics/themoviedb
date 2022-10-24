@@ -5,28 +5,9 @@ const themes = {
     light: 'light'
 }
 
-export type ILanguage = {
-    name: string,
-    encode: string
-}
-
-const languages: ILanguage[] = [
-    {
-        name: 'Ukrainian',
-        encode: 'uk-UA'
-    },
-    {
-        name: 'English',
-        encode: 'en-US'
-    }
-];
-
 export interface IThemeContext {
-    language: ILanguage;
     theme: string,
-    setLanguage: (language: ILanguage) => void,
     setTheme: (theme: string) => void,
-    toggleLanguage: () => void
     toggleTheme: () => void
 }
 
@@ -42,23 +23,12 @@ const getTheme = () => {
     return themes.dark
 }
 
-const getLanguage = () => {
-    const language = `${window?.localStorage?.getItem('language')}`
-    const langItem = languages.find(value => value.name === language);
-    return langItem ? langItem : languages[0];
-}
-
 interface IProps {
     children?: ReactNode
 }
 
 const ThemeProvider: FC<IProps> = ({children}) => {
     const [theme, setTheme] = useState(getTheme());
-    const [language, setLanguage] = useState(getLanguage());
-
-    const toggleLanguage = useCallback(() => {
-        setLanguage(language.name === languages[0].name ? languages[1] : languages[0]);
-    }, [language]);
 
     const toggleTheme = useCallback(() => {
         setTheme(theme === themes.light ? themes.dark : themes.light);
@@ -69,12 +39,8 @@ const ThemeProvider: FC<IProps> = ({children}) => {
         localStorage.setItem('theme', theme)
     }, [theme]);
 
-    useEffect(() => {
-        localStorage.setItem('language', language.name)
-    }, [language.name]);
-
     return (
-        <ThemeContext.Provider value={{language, setLanguage, toggleLanguage, theme, setTheme, toggleTheme}}>
+        <ThemeContext.Provider value={{theme, setTheme, toggleTheme}}>
             {children}
         </ThemeContext.Provider>
     );

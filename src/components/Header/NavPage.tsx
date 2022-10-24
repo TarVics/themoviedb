@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 
 import {NavButton, NavSpinner} from ".";
+import {useAppSelector} from "../../hooks";
 
 interface IInitState {
     button: number | null,
@@ -20,6 +21,7 @@ const initState: IInitState = {
 
 const NavPage: FC<IProps> = ({prevPage, nextPage, loading}) => {
     const [waitData, setWaitData] = useState<IInitState>(initState);
+    const {i18n} = useAppSelector(state => state.i18nReducer);
     const waitTimer = useRef<null | ReturnType<typeof setTimeout>>(null);
 
     useEffect(() => {
@@ -52,7 +54,7 @@ const NavPage: FC<IProps> = ({prevPage, nextPage, loading}) => {
             {(waitData.button !== 0) &&
                 <NavButton
                     onClick={() => prevPage && clickPrev()}
-                    title={prevPage ? 'Backward' : ''}
+                    title={prevPage ? i18n.value.BACKWARD : ''}
                     disabled={!prevPage}
                     icon={'fa-chevron-left'}
                 />
@@ -62,7 +64,7 @@ const NavPage: FC<IProps> = ({prevPage, nextPage, loading}) => {
             {(waitData.button !== 1) &&
                 <NavButton
                     onClick={() => nextPage && clickNext()}
-                    title={nextPage ? 'Forward' : ''}
+                    title={nextPage ? i18n.value.FORWARD : ''}
                     disabled={!nextPage}
                     icon={'fa-chevron-right'}
                 />

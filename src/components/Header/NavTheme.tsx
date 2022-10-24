@@ -1,30 +1,19 @@
 import React, {FC} from 'react';
 
-import css from "./Header.module.css";
-import ukraine from "./ukraine.png";
-import usa from "./united-states.png";
-
 import {themes} from "../../hoc";
-import {useThemeContext} from "../../hooks";
+import {useAppSelector, useThemeContext} from "../../hooks";
 import {NavButton} from ".";
 
 const NavTheme: FC = () => {
-    const {theme, toggleTheme, language, toggleLanguage} = useThemeContext();
+    const {theme, toggleTheme} = useThemeContext();
+    const {i18n} = useAppSelector(state => state.i18nReducer);
+
     return (
-        <>
-            <img
-                title={language.name}
-                className={css.icon}
-                onClick={() => toggleLanguage()}
-                src={language.name === 'Ukrainian' ? ukraine : usa}
-                key={language.name}
-                alt={language.name}/>
-            <NavButton
-                onClick={() => toggleTheme()}
-                title={'Theme switch'}
-                icon={theme === themes.dark ? 'fa-moon-o' : 'fa-sun-o'}
-            />
-        </>
+        <NavButton
+            onClick={() => toggleTheme()}
+            title={i18n.value.THEME}
+            icon={theme === themes.dark ? 'fa-moon-o' : 'fa-sun-o'}
+        />
     )
 }
 

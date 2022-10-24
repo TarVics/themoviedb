@@ -2,6 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 
 import css from "./SearchForm.module.css";
+import {useAppSelector} from "../../hooks";
 import {NavButton, GenresSelect} from "..";
 
 export interface ISearchFormResult {
@@ -21,6 +22,7 @@ interface IProps {
 }
 
 const SearchForm: FC<IProps> = ({onSubmit, visible, query}) => {
+    const {i18n} = useAppSelector(state => state.i18nReducer);
     const form = useForm<ISearchFormData>({mode: 'all'});
     const {register, handleSubmit, setFocus, setValue} = form;
     const [genresActive, setGenresActive] = useState(true);
@@ -57,14 +59,14 @@ const SearchForm: FC<IProps> = ({onSubmit, visible, query}) => {
 
             <input
                 type="text"
-                placeholder={"Enter text for search..."}
+                placeholder={i18n.value.SEARCH_PLACEHOLDER}
                 {...register("query", {
                     onChange: e => setGenresActive(!e.target.value)
                 })}
             />
 
             <button>
-                <NavButton title={'Search'} icon={'fa-check'} />
+                <NavButton title={i18n.value.SEARCH} icon={'fa-check'} />
             </button>
         </form>
     );

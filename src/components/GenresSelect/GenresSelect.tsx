@@ -12,6 +12,7 @@ interface IProps {
 
 const GenresSelect: FC<IProps> = ({form, disabled}) => {
     const {register} = form;
+    const {i18n} = useAppSelector(state => state.i18nReducer);
     const {genres: allGenres} = useAppSelector(state => state.genresReducer);
     const [active, setActive] = useState(false);
     const genresControl = useRef<HTMLDivElement>(null);
@@ -44,7 +45,7 @@ const GenresSelect: FC<IProps> = ({form, disabled}) => {
             <NavButton
                 disabled={disabled}
                 onClick={onClickGenres}
-                title={'Жанри'}
+                title={i18n.value.GENRES}
                 icon={active ? 'fa-close' : 'fa-list'}
             />
             <div
