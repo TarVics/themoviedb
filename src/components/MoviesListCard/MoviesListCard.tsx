@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 
 import css from "./MoviesListCard.module.css";
@@ -8,12 +8,15 @@ import {IMovie} from "../../interfaces";
 import {GenreBadge, PosterPreview, StarsRating} from "..";
 
 interface IProps {
-    movie: IMovie
+    movie: IMovie,
+    onResize: (node: Node, width: number, height: number) => void
 }
 
-const MoviesListCard: FC<IProps> = ({movie}) => {
+const MoviesListCard: FC<IProps> = ({movie, onResize}) => {
     const {genres} = useAppSelector(state => state.genresReducer);
     const navigate = useNavigate();
+    const selfRef = useRef<HTMLDivElement>(null);
+    const prevSize = useRef({w: 0, h: 0});
 
     let overview = movie.overview;
     const isLongOverview = overview.length > 128;
@@ -23,10 +26,49 @@ const MoviesListCard: FC<IProps> = ({movie}) => {
 
     const posterSrc = movie.backdrop_path || movie.poster_path;
 
+    useEffect(() => {
+        // const handleResize: MutationCallback = (mutations) => {
+        //     const el = mutations[0].target;
+        //     const w = (el as HTMLElement).clientWidth;
+        //     const h = (el as HTMLElement).clientHeight;
+        //
+        //     console.log(mutations);
+        //
+        //     const isChange = mutations
+        //         .map((m) => `${m.oldValue}`)
+        //         .some((prev) => prev.indexOf(`width: ${w}px`) === -1 || prev.indexOf(`height: ${h}px`) === -1);
+        //
+        //     if (!isChange) { return; }
+        //
+        //     onResize(el, w, h);
+        // }
+
+        // const ulObserver = new MutationObserver(handleResize);
+        // ulObserver.observe(selfRef.current as Node, { attributes: true, attributeOldValue: true, attributeFilter: ['style'] });
+
+        const handleResize: ResizeObserverCallback = (entries) => {
+            const entry = entries[0];
+            if (prevSize.current.h !== entry.contentRect.height || prevSize.current.h !== entry.contentRect.height) {
+                prevSize.current.h = entry.contentRect.height;
+                prevSize.current.w = entry.contentRect.width;
+
+                onResize(entry.target,
+                    Math.round(entry.contentRect.width),
+                    Math.round(entry.contentRect.height));
+            }
+        }
+
+        const ulObserver = new ResizeObserver(handleResize);
+        ulObserver.observe(selfRef.current as Element);
+
+        return () => ulObserver.disconnect();
+    })
+
     return (
         <div
             className={css.MoviesListCard}
             onClick={() => navigate(movie.id.toString())}
+            ref={selfRef}
         >
             {posterSrc && <PosterPreview
                 title={movie.title}
