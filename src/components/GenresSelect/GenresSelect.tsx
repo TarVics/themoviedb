@@ -19,7 +19,7 @@ const GenresSelect: FC<IProps> = ({form, disabled}) => {
     useEffect(() => {
         const control = genresControl.current;
         const onClickControl: EventListener = (e) => e.stopPropagation();
-        const onClickGlobal = () => setActive(false);
+        const onClickGlobal: EventListener = () => setActive(false);
 
         control && control.addEventListener('click', onClickControl);
         document.body.addEventListener('click', onClickGlobal);

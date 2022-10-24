@@ -18,7 +18,8 @@ const movieDb: IMovieDbType = {
         baseURL: process.env.REACT_APP_API || '',
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer ' + process.env.REACT_APP_KEY
+            'Authorization': 'Bearer ' + process.env.REACT_APP_KEY,
+            // 'Access-Control-Allow-Origin': '*'
         }
     },
     uri: {

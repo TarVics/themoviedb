@@ -10,7 +10,7 @@
     align-items: center;
     /*column-gap: 10px;*/
     /*row-gap: 20px;*/
-    overflow: clip;
+    /*overflow: clip;*/
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1279px) {

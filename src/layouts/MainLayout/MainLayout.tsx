@@ -1,31 +1,30 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {Outlet, URLSearchParamsInit, useNavigate, useParams, useSearchParams} from "react-router-dom";
 
-import {genresActions, moviesActions} from "../../redux";
 import {Header, ISearchFormResult, NavButton, NavPage, NavSearch, NavTheme, SearchForm} from "../../components";
-import {useAppDispatch, useAppSelector, useThemeContext} from "../../hooks";
+import {useAppSelector} from "../../hooks";
 
 const MainLayout: FC = () => {
-    const {language} = useThemeContext();
-    const dispatch = useAppDispatch();
+    // const {language} = useThemeContext();
+    // const dispatch = useAppDispatch();
     const params = useParams();
     const navigate = useNavigate();
     const [searchVisible, setSearchVisible] = useState(false);
     const [query, setQuery] = useSearchParams({page: '1'});
     const {prev, next, loading} = useAppSelector(state => state.moviesReducer);
 
-    useEffect(() => {
-        dispatch(genresActions.getGenres(language.encode));
-    }, [dispatch, language]);
+    // useEffect(() => {
+    //     dispatch(genresActions.getGenres(language.encode));
+    // }, [dispatch, language]);
 
-    useEffect(() => {
-        dispatch(moviesActions.getMovies({
-            page: query.get('page'),
-            genres: query.get('genres'),
-            query: query.get('query'),
-            language: language.encode
-        }));
-    }, [query, language, dispatch]);
+    // useEffect(() => {
+    //     dispatch(moviesActions.getMovies({
+    //         page: query.get('page'),
+    //         genres: query.get('genres'),
+    //         query: query.get('query'),
+    //         language: language.encode
+    //     }));
+    // }, [query, language, dispatch]);
 
     const prevPage = () => {
         setQuery(value => {
@@ -56,21 +55,21 @@ const MainLayout: FC = () => {
             <Header>
                 <NavTheme/>
                 {!params.id &&
-                    <NavSearch
-                        active={searchVisible}
-                        onClick={() => setSearchVisible(visible => !visible)}/>
-                }
-                {!params.id &&
-                    <NavPage
-                        prevPage={prev ? prevPage : null}
-                        nextPage={next ? nextPage : null}
-                        loading={loading}
-                    />
+                    <>
+                        <NavSearch
+                            active={searchVisible}
+                            onClick={() => setSearchVisible(visible => !visible)}/>
+                        <NavPage
+                            prevPage={prev ? prevPage : null}
+                            nextPage={next ? nextPage : null}
+                            loading={loading}
+                            />
+                    </>
                 }
                 {params.id &&
                     <NavButton
                         onClick={() => navigate(-1)}
-                        title={'Назад'}
+                        title={'Backward'}
                         icon={'fa-chevron-left'}
                     />
                 }
