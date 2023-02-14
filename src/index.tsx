@@ -20,7 +20,7 @@ const store = setupStore();
 root.render(
     <Provider store={store}>
         <ThemeProvider>
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BASENAME : ''}>
                 <App/>
             </BrowserRouter>
         </ThemeProvider>
