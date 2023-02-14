@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/themoviedb/static/css/main.a3fda68b.css",
-    "main.js": "/themoviedb/static/js/main.940972f2.js",
+    "main.js": "/themoviedb/static/js/main.e25fd733.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/themoviedb/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/themoviedb/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/themoviedb/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
@@ -11,10 +11,10 @@
     "static/media/ukraine.png": "/themoviedb/static/media/ukraine.24a00c30771ecd657024.png",
     "index.html": "/themoviedb/index.html",
     "main.a3fda68b.css.map": "/themoviedb/static/css/main.a3fda68b.css.map",
-    "main.940972f2.js.map": "/themoviedb/static/js/main.940972f2.js.map"
+    "main.e25fd733.js.map": "/themoviedb/static/js/main.e25fd733.js.map"
   },
   "entrypoints": [
     "static/css/main.a3fda68b.css",
-    "static/js/main.940972f2.js"
+    "static/js/main.e25fd733.js"
   ]
 }
